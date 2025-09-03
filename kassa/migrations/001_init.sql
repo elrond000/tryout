@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS sellers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    iban_hash TEXT NOT NULL,
+    iban_last4 TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS books (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    seller_id INTEGER NOT NULL,
+    event_id INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    isbn TEXT,
+    condition TEXT,
+    price_cents INTEGER NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(seller_id) REFERENCES sellers(id)
+);
